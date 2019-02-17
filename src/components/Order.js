@@ -5,7 +5,8 @@ class Order extends Component {
   renderOrder = key => {
     const fish = this.props.fishes[key];
     const count = this.props.orders[key];
-    const isAvailable = fish.status === 'available';
+    const isAvailable = fish && fish.status === 'available';
+    if (!fish) return null;
     if (!isAvailable) {
       return (
         <li key={key}>
@@ -26,7 +27,7 @@ class Order extends Component {
     const total = orderId.reduce((prevTotal, key) => {
       const fish = this.props.fishes[key];
       const count = this.props.orders[key];
-      const isAvailable = fish.status === 'available';
+      const isAvailable = fish && fish.status === 'available';
       if (isAvailable) {
         return prevTotal + fish.price * count;
       }

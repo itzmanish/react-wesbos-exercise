@@ -4,11 +4,38 @@ import Inventory from './Inventory';
 import Order from './Order';
 import sampleFishes from '../sample-fishes';
 import Fish from './Fish';
+import base from '../base';
 class App extends Component {
   state = {
     fishes: {},
     orders: {}
   };
+
+  componentDidMount() {
+    const { params } = this.props.match;
+    const orders = JSON.parse(localStorage.getItem(params.storeID));
+    if (orders) {
+      this.setState({
+        orders
+      });
+    }
+    this.ref = base.syncState(`${params.storeID}/fishes`, {
+      context: this,
+      state: 'fishes'
+    });
+  }
+
+  componentDidUpdate() {
+    localStorage.setItem(
+      this.props.match.params.storeID,
+      JSON.stringify(this.state.orders)
+    );
+  }
+
+  componentWillUnmount() {
+    base.removeBinding(this.ref);
+  }
+
   addFish = fish => {
     // 1. copy existing objects of fishes
     const fishes = { ...this.state.fishes };
