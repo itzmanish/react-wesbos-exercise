@@ -64,6 +64,15 @@ class App extends Component {
     });
   };
 
+  updateFish = (key, updatedFish) => {
+    // 1. make a copy of fishes data
+    const fishes = { ...this.state.fishes };
+    // 2. update fishes
+    fishes[key] = updatedFish;
+    // 3. set updated fishes to state
+    this.setState({ fishes });
+  };
+
   render() {
     return (
       <div className="catch-of-the-day">
@@ -84,6 +93,8 @@ class App extends Component {
         <Inventory
           addFish={this.addFish}
           loadSampleFishes={this.loadSampleFishes}
+          fishes={this.state.fishes}
+          updateFish={this.updateFish}
         />
       </div>
     );
