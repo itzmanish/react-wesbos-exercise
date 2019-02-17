@@ -48,6 +48,9 @@ class EditFishForm extends Component {
           placeholder="Image"
           onChange={this.handleUpdate}
         />
+        <button onClick={() => this.props.removeFish(this.props.index)}>
+          - Remove Fish
+        </button>
       </form>
     );
   }

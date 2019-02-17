@@ -5,13 +5,14 @@ class Inventory extends Component {
   render() {
     return (
       <div className="inventory">
-        <h1>Inventory</h1>
+        <h2>Inventory</h2>
         {Object.keys(this.props.fishes).map(key => (
           <EditFishForm
             key={key}
             index={key}
             fish={this.props.fishes[key]}
             updateFish={this.props.updateFish}
+            removeFish={this.props.removeFish}
           />
         ))}
         <AddFishForm addFish={this.props.addFish} />

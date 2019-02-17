@@ -64,12 +64,32 @@ class App extends Component {
     });
   };
 
+  removeFromOrder = key => {
+    // 1. make a copy of orders
+    const orders = { ...this.state.orders };
+    // 2. delete fishes from orders
+    delete orders[key];
+    // 3. update state with new orders
+    this.setState({
+      orders
+    });
+  };
+
   updateFish = (key, updatedFish) => {
     // 1. make a copy of fishes data
     const fishes = { ...this.state.fishes };
     // 2. update fishes
     fishes[key] = updatedFish;
     // 3. set updated fishes to state
+    this.setState({ fishes });
+  };
+
+  removeFish = key => {
+    // 1. make a copy of fishes data
+    const fishes = { ...this.state.fishes };
+    // 2. find fish with given key
+    fishes[key] = null;
+    // set state with new values
     this.setState({ fishes });
   };
 
@@ -89,12 +109,17 @@ class App extends Component {
             ))}
           </ul>
         </div>
-        <Order fishes={this.state.fishes} orders={this.state.orders} />
+        <Order
+          fishes={this.state.fishes}
+          orders={this.state.orders}
+          removeFromOrder={this.removeFromOrder}
+        />
         <Inventory
           addFish={this.addFish}
           loadSampleFishes={this.loadSampleFishes}
           fishes={this.state.fishes}
           updateFish={this.updateFish}
+          removeFish={this.removeFish}
         />
       </div>
     );
