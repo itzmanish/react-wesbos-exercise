@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { formatPrice } from '../helpers';
+// import { TransitionGroup, CSSTransition } from 'react-transition-group'
 
 class Order extends Component {
   renderOrder = key => {
@@ -17,8 +18,8 @@ class Order extends Component {
     return (
       <li key={key}>
         {count} lbs {fish.name}
-        {formatPrice(count * fish.price)}
         <button onClick={() => this.props.removeFromOrder(key)}>&times;</button>
+        {formatPrice(count * fish.price)}
       </li>
     );
   };
