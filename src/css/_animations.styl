@@ -24,20 +24,32 @@
 
 
 .count-enter
-  background: red
   transition .5s
   transform translateY(100%)
   &.count-enter-active
-    background: yellow
     transform translateY(0)
 
 .count-exit
-  background: black
   transform translateY(0)
   transition .5s
   position absolute
   left 0
   bottom 0
   &.count-exit-active
-    background green
-    transform translateY(-100%) scale(3)
+    transform translateY(-100%) scale(2)
+
+.amount-enter
+  transition .5s
+  transform translateY(100%)
+  &.amount-enter-active
+    transform translateY(0)
+
+.amount-exit
+  transform translateY(0)
+  transition .5s
+  position absolute
+  right 0
+  top 0
+  &.amount-exit-active
+    transform translateY(-100%) scale(2)
+
