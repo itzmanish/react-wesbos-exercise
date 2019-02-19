@@ -10,7 +10,8 @@
     "serve": "latest"
   },
   "scripts": {
-    "start": "serve --single ./build"
+    "start": "serve --single ./build",
+    "surge": "surge"
   },
   "browserslist": [
     ">0.2%",
